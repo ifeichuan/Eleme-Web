@@ -9,7 +9,7 @@ const request = axios.create({
 request.interceptors.response.use((response) => {
 	const { data: _data } = response;
 	const { data, msg, code } = _data;
-	if (code !== 0) {
+	if (code !== 200) {
 		showDialog({
 			message: msg,
 		}).then(() => {

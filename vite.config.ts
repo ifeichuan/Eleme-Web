@@ -1,15 +1,17 @@
-import { fileURLToPath, URL } from 'node:url';
+// import { fileURLToPath, URL } from 'node:url';
+import path from 'node:path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { VantResolver } from '@vant/auto-import-resolver';
 import { defineConfig } from 'vite';
 import pxtorem from 'postcss-pxtorem';
 import vue from '@vitejs/plugin-vue';
-
+import tailwindcss from '@tailwindcss/vite';
 // import vueDevTools from 'vite-plugin-vue-devtools';
 
 // https://vite.dev/config/
 export default defineConfig({
+	base: './',
 	plugins: [
 		vue(),
 		// vueDevTools(),
@@ -19,10 +21,12 @@ export default defineConfig({
 		Components({
 			resolvers: [VantResolver()],
 		}),
+		tailwindcss(),
 	],
 	resolve: {
 		alias: {
-			'@': fileURLToPath(new URL('./src', import.meta.url)),
+			// '@': fileURLToPath(new URL('./src', import.meta.url)),
+			'@': path.resolve(__dirname, './src'),
 		},
 	},
 	css: {
