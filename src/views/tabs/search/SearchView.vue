@@ -64,63 +64,61 @@ onMounted(() => {
 </script>
 
 <template>
-	<Teleport to="#app">
-		<Transition name="fade" appear>
-			<div class="search-view w-screen h-screen">
-				<VanSearch
-					ref="searchRef"
-					autofocus
-					show-action
-					v-model="searchValue"
-					shape="round"
-					placeholder="请输入搜索关键词"
-					@search="handleSearch"
-					@cancel="emits('cancel')"
-					@update:model-value="clearResult"
-				></VanSearch>
-				<div class="result mt-3">
-					<div class="searching" v-if="isSearch">搜索中</div>
-					<div class="resultShow" v-if="searchResult && searchValue">
-						<div
-							class="item flex justify-between text-2 bg-blue-200 rounded-xl items-center m-2 p-1.5"
-							v-for="(item, key) in searchResult"
-							:key="key"
-						>
-							<div class="left flex items-center justify-center">
-								<VanIcon name="search" />
-								<div class="name ml-1">
-									{{ (item.label as string).split(searchValue)[0] }}
-									<span class="">{{ searchValue }}</span>
-								</div>
-							</div>
-							<div class="count mr-3">约{{ item.resultCount }}个结果</div>
+	<!-- <Teleport to="#app"> -->
+	<!-- <Transition name="fade" appear> -->
+	<div class="search-view w-screen h-screen">
+		<VanSearch
+			ref="searchRef"
+			autofocus
+			show-action
+			v-model="searchValue"
+			shape="round"
+			placeholder="请输入搜索关键词"
+			@search="handleSearch"
+			@cancel="emits('cancel')"
+			@update:model-value="clearResult"
+		></VanSearch>
+		<div class="result mt-3">
+			<div class="searching" v-if="isSearch">搜索中</div>
+			<div class="resultShow" v-if="searchResult && searchValue">
+				<div
+					class="item flex justify-between text-2 bg-blue-200 rounded-xl items-center m-2 p-1.5"
+					v-for="(item, key) in searchResult"
+					:key="key"
+				>
+					<div class="left flex items-center justify-center">
+						<VanIcon name="search" />
+						<div class="name ml-1">
+							{{ (item.label as string).split(searchValue)[0] }}
+							<span class="">{{ searchValue }}</span>
 						</div>
 					</div>
-					<div class="resultEmpty" v-else-if="searchValue && !searchResult">
-						搜索结果为空
-					</div>
-					<div class="searchValueEmpty h-18 overflow-hidden" v-else>
-						<div
-							class="History flex overflow-hidden justify-start items-start flex-wrap basis-1/2"
-							v-if="searchHistory"
-						>
-							<TransitionGroup name="list">
-								<div
-									@click="handleTagClick(item)"
-									class="item rounded-xl bg-gray-100 p-1 m-1"
-									v-for="(item, index) in searchHistory"
-									:key="index"
-								>
-									{{ item }}
-								</div>
-							</TransitionGroup>
-						</div>
-						<div class="" v-else>还没有搜索记录呢</div>
-					</div>
+					<div class="count mr-3">约{{ item.resultCount }}个结果</div>
 				</div>
 			</div>
-		</Transition>
-	</Teleport>
+			<div class="resultEmpty" v-else-if="searchValue && !searchResult">搜索结果为空</div>
+			<div class="searchValueEmpty h-18 overflow-hidden" v-else>
+				<div
+					class="History flex overflow-hidden justify-start items-start flex-wrap basis-1/2"
+					v-if="searchHistory"
+				>
+					<TransitionGroup name="list">
+						<div
+							@click="handleTagClick(item)"
+							class="item rounded-xl bg-gray-100 p-1 m-1"
+							v-for="(item, index) in searchHistory"
+							:key="index"
+						>
+							{{ item }}
+						</div>
+					</TransitionGroup>
+				</div>
+				<div class="" v-else>还没有搜索记录呢</div>
+			</div>
+		</div>
+	</div>
+	<!-- </Transition> -->
+	<!-- </Teleport> -->
 </template>
 
 <style lang="scss">
@@ -131,14 +129,7 @@ onMounted(() => {
 	bottom: 0;
 	top: 0;
 	background-color: white;
-}
-.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 0.3s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-	opacity: 0;
+	z-index: 999;
 }
 .list-enter-active,
 .list-leave-active {

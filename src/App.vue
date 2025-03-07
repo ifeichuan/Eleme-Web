@@ -10,13 +10,10 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-	
 	<RouterView></RouterView>
 </template>
 
 <style>
-@import 'normalize.css';
-@import 'tailwindcss';
 #app {
 	/* 字体抗锯齿 可以让字体更清晰 */
 	-webkit-font-smoothing: antialiased;

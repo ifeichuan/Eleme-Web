@@ -9,11 +9,12 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     OpenSearch: typeof import('./src/components/OpenSearch.vue')['default']
+    OpLoadingView: typeof import('./src/components/OpLoadingView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VanIcon: typeof import('vant/es')['Icon']
+    VanLoading: typeof import('vant/es')['Loading']
     VanSearch: typeof import('vant/es')['Search']
     VanSkeleton: typeof import('vant/es')['Skeleton']
-    VanTag: typeof import('vant/es')['Tag']
   }
 }

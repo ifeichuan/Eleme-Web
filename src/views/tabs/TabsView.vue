@@ -2,7 +2,7 @@
 import { useRoute, useRouter } from 'vue-router';
 import { Tabbar, TabbarItem } from 'vant';
 import { ref, watch } from 'vue';
-import { useSearchStore } from '@/stores/useSearchStore';
+import { useSearchStore } from '@/stores/search';
 const searchView = useSearchStore();
 const moveWay = ref(1); // 1表示向右滑动，-1表示向左滑动
 const route = useRoute();
@@ -11,7 +11,7 @@ const active = ref(route.name as string);
 
 watch(active, (newval, oldval) => {
 	// 计算滑动方向，基于路由名称的导航逻辑
-	searchView.toggleShow(false)
+	searchView.toggleShow(false);
 	let a = newval.length;
 	let b = oldval.length;
 
@@ -31,7 +31,7 @@ watch(active, (newval, oldval) => {
 </script>
 
 <template>
-	<div class="router-view-container">
+	<div class="router-view-containers">
 		<RouterView v-slot="{ Component }">
 			<!-- 使用动态的transition name基于moveWay -->
 

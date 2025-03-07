@@ -14,7 +14,7 @@ export function useAsync<T>(asyncFunc: () => Promise<T>, initValue: T, immediate
   const data = ref(initValue);
   // 错误信息
   const error = ref(null);
-  
+
   /**
    * 执行异步操作
    * @returns Promise
@@ -24,7 +24,7 @@ export function useAsync<T>(asyncFunc: () => Promise<T>, initValue: T, immediate
     pedding.value = true;
     // 清空错误信息
     error.value = null;
-    
+
     return asyncFunc()
       .then((res) => {
         // 更新数据
