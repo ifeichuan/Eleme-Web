@@ -8,13 +8,24 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    CountDown: typeof import('./src/components/CountDown.vue')['default']
     OpenSearch: typeof import('./src/components/OpenSearch.vue')['default']
     OpLoadingView: typeof import('./src/components/OpLoadingView.vue')['default']
+    OpTodo: typeof import('./src/components/OpTodo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScrollBar: typeof import('./src/components/ScrollBar.vue')['default']
+    ShopItem: typeof import('./src/components/ShopItem.vue')['default']
+    ShopList: typeof import('./src/components/ShopList.vue')['default']
+    SwipeView: typeof import('./src/components/SwipeView.vue')['default']
     VanIcon: typeof import('vant/es')['Icon']
     VanLoading: typeof import('vant/es')['Loading']
     VanSearch: typeof import('vant/es')['Search']
     VanSkeleton: typeof import('vant/es')['Skeleton']
+    VanSticky: typeof import('vant/es')['Sticky']
+    VanSwipe: typeof import('vant/es')['Swipe']
+    VanSwipeItem: typeof import('vant/es')['SwipeItem']
+    VanTab: typeof import('vant/es')['Tab']
+    VanTabs: typeof import('vant/es')['Tabs']
   }
 }

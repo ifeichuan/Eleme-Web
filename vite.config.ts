@@ -8,12 +8,15 @@ import pxtorem from 'postcss-pxtorem';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 // https://vite.dev/config/
 export default defineConfig({
+
   base: '/',
   plugins: [
     vue(),
+    vueJsx(),
     vueDevTools(),
     AutoImport({
       resolvers: [VantResolver()],

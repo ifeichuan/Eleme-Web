@@ -18,17 +18,19 @@ const emits = defineEmits<IEmits>();
 			<img src="@/assets/imgs/index_page/shopcart.png" class="shopcart-icon" />
 			<img class="comments-icon" src="@/assets/imgs/index_page/comments.png" />
 		</div>
-		<VanSearch
-			shape="round"
-			background="linear-gradient(to right, rgb(53, 200, 250), rgb(31, 175, 243))"
-			readonly
-			placeholder="塔斯汀 45-15"
-			@click-input="emits('click')"
-		>
-			<template #right-icon>
-				<div>搜索</div>
-			</template>
-		</VanSearch>
+		<VanSticky>
+			<VanSearch
+				shape="round"
+				background="linear-gradient(to right, rgb(53, 200, 250), rgb(31, 175, 243))"
+				readonly
+				placeholder="塔斯汀 45-15"
+				@click-input="emits('click')"
+			>
+				<template #right-icon>
+					<div>搜索</div>
+				</template>
+			</VanSearch>
+		</VanSticky>
 		<div class="search-recommend">
 			<div class="tag" v-for="(obj, key) in recomments" :key="key">
 				{{ obj.label }}

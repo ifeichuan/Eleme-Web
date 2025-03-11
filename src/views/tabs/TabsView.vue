@@ -31,7 +31,7 @@ watch(active, (newval, oldval) => {
 </script>
 
 <template>
-	<div class="router-view-containers">
+	<div class="router-view-container">
 		<RouterView v-slot="{ Component }">
 			<!-- 使用动态的transition name基于moveWay -->
 
@@ -59,6 +59,9 @@ watch(active, (newval, oldval) => {
 	position: relative;
 	overflow: hidden;
 	min-height: calc(100vh - 50px); /* 减去Tabbar的高度 */
+	width: 100%;
+	left: 0;
+	right: 0;
 }
 
 /* 动画容器样式 */
@@ -70,6 +73,9 @@ watch(active, (newval, oldval) => {
 	position: absolute;
 	width: 100%;
 	overflow: hidden;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 
 /* 确保两个页面在切换过程中不会重叠错位 */

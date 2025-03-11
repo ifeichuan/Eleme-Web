@@ -13,10 +13,25 @@ Mock.mock('/api/home_page', 'get', {
       { value: 2, label: '奶茶' },
       { value: 3, label: '西瓜汁' }
     ],
-    banner:
-    {
-      imgUrl: getAssetsFile('index_page/transformer-banner.png')
-    }
+    scorllBarInfoList: [
+      {
+        type: 'bean',
+        badge: '赚豆',
+        detail: `今天再下<span class="info-num">1</span>单赚<span class="info-num">400</span>吃货豆`,
+        btn: '领任务',
+      },
+      {
+        type: 'hongbao',
+        badge: '红包',
+        detail: `你有<span class="info-num">4</span>张总<span class="info-num">43.5</span>元红包即将到期`,
+        btn: '去查看',
+      },
+    ],
+    banner: [
+      {
+        imgUrl: getAssetsFile('index_page/transformer-banner.png')
+      }
+    ]
     ,
     transformer: [
       {
@@ -94,7 +109,7 @@ Mock.mock('/api/home_page', 'get', {
         btn: '去查看'
       }
     ],
-    countdown: {
+    countDown: {
       time: 24 * 60 * 60 * 1000,
       goods: {
         imgUrl: getAssetsFile('index_page/count-down-p.png'),

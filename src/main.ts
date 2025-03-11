@@ -5,11 +5,15 @@ import { createPinia } from 'pinia';
 import './mock/index';
 import App from './App.vue';
 import router from './router';
+import '@/assets/common.scss'
 import 'vant/lib/index.css';
+import lazyload from 'vant/lib/lazyload';
+
 const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
+app.use(lazyload);
 const rootValue = 16;
 const rootWidth = 390;
 const devceWidth = document.documentElement.clientWidth;

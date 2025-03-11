@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, type UnwrapRef } from 'vue';
 
 /**
  * 异步操作的状态管理Hook
@@ -28,7 +28,7 @@ export function useAsync<T>(asyncFunc: () => Promise<T>, initValue: T, immediate
     return asyncFunc()
       .then((res) => {
         // 更新数据
-        data.value = res;
+        data.value = res as UnwrapRef<T>;
         // 关闭加载状态
         pedding.value = false;
       })

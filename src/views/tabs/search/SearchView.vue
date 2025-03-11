@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, computed, watch } from 'vue';
-import { useDebounce } from '@/use/useDebounce';
+import { useDebounce } from '@/hooks/useDebounce';
 import { fetchSearchData } from '@/api/search';
 interface IEmits {
 	(e: 'cancel'): void;
