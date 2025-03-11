@@ -1,39 +1,12 @@
-# WebEleme
+# WebEleme 饿了么外卖
 
-This template should help get you started developing with Vue 3 in Vite.
+`keys`:
 
-## Recommended IDE Setup
+- Vue3 Pinia Axios 仿饿了么外卖高性能
+- useHooks
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+这是一个根据慕课网-Vue3+Pinia+Vite+TS 还原高性能外卖APP项目手写的练手项目
 
-## Type Support for `.vue` Imports in TS
+根据自己的喜好修改了以下内容
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+1. 使用Mockjs而不使用视频自带的json-server 所以你只需要下载这一个仓库并安装即可
