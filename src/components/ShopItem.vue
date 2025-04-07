@@ -8,7 +8,7 @@ interface IProps {
 	data: IShop;
 }
 const props = defineProps<IProps>();
-console.log(props.data);
+console.log(props);
 const router = useRouter();
 const [isMoreShown, showMore] = useToggle(false);
 const shopName = computed(() => `${props.data.shopName}(${props.data.branch})`);
@@ -27,7 +27,8 @@ const gotoShop = (id: number | string) => {
 
 <template>
 	<div class="home-shop-item" @click="gotoShop(data.id)">
-		<img class="home-shop-item__poster" v-lazy="data.postUrl" />
+		<div v-if="!data">东西</div>
+		<img v-else class="home-shop-item__poster" v-lazy="data.postUrl" />
 		<div class="home-shop-item__info">
 			<div class="info__top">
 				<div class="info__name op-ellipsis">{{ shopName }}</div>

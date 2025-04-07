@@ -1,4 +1,4 @@
-import type { IShop, IList, IPaginate } from "@/types";
+import type { IShop, IList, IPaginate, IShopDetail } from "@/types";
 import request from "./request";
 
 export const fetchShopList = ({ _page, _limit }: IPaginate) => {
@@ -7,6 +7,14 @@ export const fetchShopList = ({ _page, _limit }: IPaginate) => {
     params: {
       _page,
       _limit
+    }
+  })
+}
+
+export const fetchShopPageData = (id: string) => {
+  return request.get<IShopDetail, IShopDetail>('/api/shop_page', {
+    params: {
+      id
     }
   })
 }

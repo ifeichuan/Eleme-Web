@@ -1,3 +1,12 @@
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+// 为组件定义名称，以便KeepAlive能够正确识别
+export default defineComponent({
+	name: 'HomeView',
+});
+</script>
+
 <script lang="ts" setup>
 import TheTop from './components/TheTop.vue';
 import OpLoadingView from '@/components/OpLoadingView.vue';
@@ -14,6 +23,7 @@ import Mock from '@/mock/index';
 import { PRIMARY_COLOR, TRANSPARENT } from '@/config';
 import { HOME_TABS } from './config';
 import { ref, onActivated, onDeactivated } from 'vue';
+
 // 模拟一个热门搜索
 const recomments = [
 	{
@@ -52,6 +62,7 @@ const showSearch = () => {
 	// 保存当前滚动位置
 	scrollPosition.value = window.scrollY;
 	// 打开搜索视图
+
 	searchView.toggleShow(true);
 };
 
@@ -63,6 +74,12 @@ const hideSearch = () => {
 		window.scrollTo(0, scrollPosition.value);
 	}, 100);
 };
+onActivated(() => {
+	window.scrollTo(0, scrollPosition.value);
+});
+onDeactivated(() => {
+	scrollPosition.value = window.scrollY;
+});
 </script>
 
 <template>
@@ -77,7 +94,7 @@ const hideSearch = () => {
 			<!-- <template #template> loading </template> -->
 			<div class="">
 				<div class="home-page__banner">
-					<img :src="data?.banner[0].imgUrl" alt="Banner " />
+					<img :src="data.banner[0].imgUrl" alt="Banner " />
 				</div>
 
 				<TheTransformer :data="data.transformer" />
@@ -86,6 +103,7 @@ const hideSearch = () => {
 					<CountDown :data="data.countDown" />
 					<SwipeView :data="data.activities" />
 				</div>
+
 				<VanTabs
 					sticky
 					offset-top="54px"
@@ -113,8 +131,5 @@ const hideSearch = () => {
 }
 .home-page {
 	background: rgb(244, 244, 244);
-}
-.home-page__banner {
-	padding-top: 0.625rem;
 }
 </style>

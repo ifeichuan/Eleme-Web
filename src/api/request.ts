@@ -2,13 +2,18 @@ import axios from 'axios';
 import { showDialog } from 'vant';
 
 const request = axios.create({
-  // baseURL: 'https://dog.ceo',
+  // baseURL: 'http://localhost:8000/api',
   timeout: 5000,
+  headers: {
+    // 'Content-Type': 'application/json',
+    "Cache-Control": 'max-age=31536000'
+  },
 });
 
 request.interceptors.response.use((response) => {
   const { data: _data } = response;
   const { data, msg, code } = _data;
+  console.log(response.data)
   if (code !== 200) {
     showDialog({
       message: msg,

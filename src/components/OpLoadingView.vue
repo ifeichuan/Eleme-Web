@@ -1,9 +1,14 @@
 <script lang="ts" setup>
+import { onMounted } from 'vue';
+
 interface IProps {
 	loading: boolean;
 	type: 'loading' | 'skeleton';
 }
-defineProps<IProps>();
+const { loading, type } = defineProps<IProps>();
+onMounted(() => {
+	console.log(type);
+});
 </script>
 
 <template>
@@ -13,8 +18,9 @@ defineProps<IProps>();
 				<VanLoading />
 			</div>
 			<div class="skeleton-wrapper" v-if="type === 'skeleton'">
-				<van-skeleton :row="10" />
-				<van-skeleton title :row="10" avatar />
+				<VanLoading></VanLoading>
+				<VanSkeleton title avatar :row="10" />
+				<VanSkeleton title :row="10" avatar />
 				<VanSkeleton title row="5" />
 			</div>
 		</slot>

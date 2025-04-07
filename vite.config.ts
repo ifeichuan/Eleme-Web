@@ -54,16 +54,14 @@ export default defineConfig({
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       }
     }
-  }
-  // server: {
-  // 	proxy: {
-  // 		api: {
-  // 			target: 'http://localhost:5173',
-  // 			changeOrigin: true,
-  // 			bypass: (req) => {
-  // 				if (req.url === '/api/user') return req.url;
-  // 			},
-  // 		},
-  // 	},
-  // },
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });

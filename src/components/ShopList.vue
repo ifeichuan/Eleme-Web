@@ -9,17 +9,17 @@ const finished = ref(false);
 let page = 1;
 const onLoad = async () => {
 	if (finished.value) return;
-	const response = await fetchShopList({
+	const { data, total } = await fetchShopList({
 		_page: page++,
 		_limit: 5,
 	});
-	console.log(response);
+	console.log(data);
 
 	// console.log(data);
-	shopList.value.push(...response.data.list);
+	shopList.value.push(...data);
 	console.log(shopList.value);
 	loading.value = false;
-	if (shopList.value.length >= response.data.total) {
+	if (shopList.value.length >= total) {
 		finished.value = true;
 	}
 };
@@ -34,7 +34,9 @@ console.log('Shoplist Mouted');
 			finished-text="没有更多了"
 			@load="onLoad"
 		>
-			<ShopItem v-for="v in shopList" :key="v.id" :data="v" />
+			<KeepAlive>
+				<ShopItem v-for="v in shopList" :key="v.id" :data="v" />
+			</KeepAlive>
 		</OpList>
 	</div>
 </template>

@@ -5,7 +5,7 @@ const Mock = mockjs;
 // 商店项目数据生成函数
 const getItemData = (index: number) => ({
   id: index,
-  postUrl: `/serverimgs/index_page/shop-list/post1.png`,
+  postUrl: "/serverImgs/index_page/shop-list/post2.png",
   shopName: `切果NOW!布鲁斯-${index}`,
   branch: "XXX店",
   score: 4.7,
@@ -87,13 +87,12 @@ Mock.mock(/\/api\/shop_list(\?.*)?$/, 'get', (options) => {
     code: 200,  // 修改为0表示成功
     message: 'success',
     data: {
-      data: {
-        list: paginatedData,  // 将数据放在 list 字段中
-        total: shopListData.length,
-        pageSize: limit,
-        pageNum: page,
-        totalPage: Math.ceil(shopListData.length / limit)
-      }
+      data: paginatedData,  // 将数据放在 list 字段中
+      total: shopListData.length,
+      pageSize: limit,
+      pageNum: page,
+      totalPage: Math.ceil(shopListData.length / limit)
+
     }
   };
 });

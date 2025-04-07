@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router';
-import { Tabbar, TabbarItem } from 'vant';
+
 import { ref, watch } from 'vue';
 import { useSearchStore } from '@/stores/search';
 const searchView = useSearchStore();
@@ -14,7 +14,6 @@ watch(active, (newval, oldval) => {
 	searchView.toggleShow(false);
 	let a = newval.length;
 	let b = oldval.length;
-
 	// home和order之间的导航需要特殊处理
 	if ((newval == 'home' && oldval == 'order') || (oldval == 'home' && newval == 'order')) {
 		const t = a;
@@ -24,30 +23,30 @@ watch(active, (newval, oldval) => {
 
 	// 设置滑动方向: 1表示向右, -1表示向左
 	moveWay.value = a > b ? 1 : -1;
-
+	// active.value = newval;
 	// 导航到新路由
 	router.push({ name: newval });
 });
 </script>
 
 <template>
-	<div class="router-view-container">
-		<RouterView v-slot="{ Component }">
-			<!-- 使用动态的transition name基于moveWay -->
+	<div style="display: contents">
+		<div class="router-view-container">
+			<RouterView v-slot="{ Component }">
+				<transition :name="moveWay === 1 ? 'slide-right' : 'slide-left'" mode="out-in">
+					<KeepAlive include="HomeView,OrderView,MeView">
+						<component :is="Component" />
+					</KeepAlive>
+				</transition>
+			</RouterView>
+		</div>
 
-			<transition :name="moveWay === 1 ? 'slide-right' : 'slide-left'" mode="out-in">
-				<KeepAlive>
-					<component :is="Component" />
-				</KeepAlive>
-			</transition>
-		</RouterView>
+		<VanTabbar v-model="active">
+			<VanTabbarItem name="home" icon="home-o">首页</VanTabbarItem>
+			<VanTabbarItem name="order" icon="bars">订单</VanTabbarItem>
+			<VanTabbarItem name="me" icon="contact">我的</VanTabbarItem>
+		</VanTabbar>
 	</div>
-
-	<Tabbar v-model="active">
-		<TabbarItem name="home" icon="home-o">首页</TabbarItem>
-		<TabbarItem name="order" icon="bars">订单</TabbarItem>
-		<TabbarItem name="me" icon="contact">我的</TabbarItem>
-	</Tabbar>
 </template>
 
 <style>
@@ -62,6 +61,7 @@ watch(active, (newval, oldval) => {
 	width: 100%;
 	left: 0;
 	right: 0;
+	background-color: rgb(244, 244, 244);
 }
 
 /* 动画容器样式 */
@@ -81,7 +81,7 @@ watch(active, (newval, oldval) => {
 /* 确保两个页面在切换过程中不会重叠错位 */
 .slide-left-enter-active,
 .slide-right-enter-active {
-	z-index: 1;
+	z-index: 10;
 }
 
 .slide-left-leave-active,
@@ -92,7 +92,7 @@ watch(active, (newval, oldval) => {
 /* 向左滑动的入场动画 */
 .slide-left-enter-from {
 	transform: translateX(100%);
-	opacity: 1;
+	opacity: 0;
 }
 .slide-left-enter-to {
 	transform: translateX(0);
@@ -112,7 +112,7 @@ watch(active, (newval, oldval) => {
 /* 向右滑动的入场动画 */
 .slide-right-enter-from {
 	transform: translateX(-100%);
-	opacity: 1;
+	opacity: 0;
 }
 .slide-right-enter-to {
 	transform: translateX(0);

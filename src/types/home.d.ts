@@ -13,7 +13,7 @@ export interface ISerachResult {
   resultCount: number;
 }
 
-export interface IHomeInfo {
+export interface IHomenfo {
   banner: Ibanner[];
   searchRecomments: ISearchRecomment[];
   transformer: ITransFormer[];
